@@ -1,4 +1,4 @@
-import styles from './Loader.module.scss';
+// import styles from './Loader.module.scss';
 import { ThreeDots } from 'react-loader-spinner';
 
 export const Loader = () => {
