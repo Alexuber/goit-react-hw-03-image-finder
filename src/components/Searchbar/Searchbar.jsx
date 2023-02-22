@@ -1,10 +1,15 @@
 import styles from './Searchbar.module.scss';
 import { SearchForm } from '../SearchForm/SearchForm';
+import PropTypes from 'prop-types';
 
-export const Searchbar = ({ getImagesByQuery }) => {
+export const Searchbar = ({ handleFormSubmit }) => {
   return (
     <header className={styles.Searchbar}>
-      <SearchForm getImagesByQuery={getImagesByQuery} />
+      <SearchForm handleFormSubmit={handleFormSubmit} />
     </header>
   );
+};
+
+Searchbar.propTypes = {
+  handleFormSubmit: PropTypes.func.isRequired,
 };

@@ -6,20 +6,7 @@ const imageInstance = axios.create({
   baseURL: BASE_URL,
 });
 
-export const fetchImagesFromSearch = query => {
-  return imageInstance.get('/', {
-    params: {
-      key: API_KEY,
-      image_type: 'photo',
-      orientation: 'horizontal',
-      safesearch: true,
-      per_page: 3,
-      q: query,
-    },
-  });
-};
-
-export const fetchByClickLoadMoreBtn = (page = 1, query) => {
+export const fetchImages = (page = 1, query) => {
   return imageInstance.get('/', {
     params: {
       key: API_KEY,
