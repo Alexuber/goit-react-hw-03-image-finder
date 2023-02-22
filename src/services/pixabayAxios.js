@@ -19,7 +19,7 @@ export const fetchImagesFromSearch = query => {
   });
 };
 
-export const fetchByClickLoadMoreBtn = (page, query) => {
+export const fetchByClickLoadMoreBtn = (page = 1, query) => {
   return imageInstance.get('/', {
     params: {
       key: API_KEY,

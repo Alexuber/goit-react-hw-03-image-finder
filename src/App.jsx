@@ -19,6 +19,8 @@ export class App extends Component {
     error: null,
     page: 1,
     isHiddenBtnBtn: null,
+    isModal: false,
+    imgDetails: {},
   };
 
   componentDidMount() {}
@@ -74,21 +76,32 @@ export class App extends Component {
     this.getImagesByLoadMoreBtn();
   };
 
+  showModal = (largeImageURL, tags) => {
+    this.setState({ isModal: true, imgDetails: { largeImageURL, tags } });
+  };
+
+  hideModal = () => {
+    this.setState({ isModal: false, postDetails: {} });
+  };
+
   render() {
-    const { images, isLoading, isHiddenBtn } = this.state;
-    const { handleLoadMoreBtn } = this;
+    const { images, isLoading, isHiddenBtn, isModal, imgDetails } = this.state;
+    const { handleLoadMoreBtn, showModal, hideModal } = this;
     return (
       <>
         <Searchbar getImagesByQuery={this.getImagesByQuery} />
         {images && images.length > 0 && (
           <>
-            <ImageGallery images={images} />
+            <ImageGallery images={images} showModal={showModal} />
             {!isHiddenBtn && <Button handleLoadMoreBtn={handleLoadMoreBtn} />}
           </>
         )}
         {isLoading && <Loader />}
-
-        <Modal />
+        {isModal && (
+          <Modal showModal={showModal} hideModal={hideModal}>
+            <img src={imgDetails.largeImageURL} alt={imgDetails.tags} />
+          </Modal>
+        )}
         <ToastContainer />
       </>
     );
