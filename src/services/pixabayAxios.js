@@ -13,7 +13,7 @@ export const fetchImages = (page = 1, query) => {
       image_type: 'photo',
       orientation: 'horizontal',
       safesearch: true,
-      per_page: 3,
+      per_page: 12,
       q: query,
       page: page,
     },
